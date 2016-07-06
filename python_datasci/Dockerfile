@@ -1,36 +1,11 @@
-FROM ubuntu:14.04
-
-ENV DEBIAN_FRONTEND noninteractive
-
-# Install Linux packages
-RUN apt-get -y update --fix-missing && apt-get install -y wget nano locales curl unzip  \
-	openssl libhdf5-dev bzip2 ca-certificates libglib2.0-0 libxext6 libsm6 libxrender1 \
-    build-essential git mercurial subversion g++ gcc python3-dev libatlas-base-dev
-
-# Install and setup Anaconda Python3 distribution
-RUN echo 'export PATH=/opt/conda/bin:$PATH' > /etc/profile.d/conda.sh && \
-    wget --quiet https://repo.continuum.io/archive/Anaconda3-4.0.0-Linux-x86_64.sh && \
-    /bin/bash /Anaconda3-4.0.0-Linux-x86_64.sh -b -p /opt/conda && \
-    rm /Anaconda3-4.0.0-Linux-x86_64.sh
-
-	
-ENV PATH /opt/conda/bin:$PATH
-
-ENV LANG C.UTF-8
+FROM continuumio/anaconda3:latest
 
 # Set the time zone to the local time zone
 RUN echo "America/Phoenix" > /etc/timezone && dpkg-reconfigure --frontend noninteractive tzdata
 
-# Install packages for scientific computing
-RUN pip install --upgrade pip
-
 RUN conda update --all
 
-# fancyimpute
-RUN pip install fancyimpute
-
-# Workaround for "GFORTRAN_1.4' not found (required by /usr/lib/liblapack.so.3)"
-# RUN export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libgfortran.so.3
+# Install packages for scientific computing
 
 # Theano
 
@@ -55,6 +30,9 @@ RUN conda install seaborn
 # PyMC
 
 # TensorFlow
+# Ubuntu/Linux 64-bit, CPU only, Python 3.5
+RUN export TF_BINARY_URL=https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-0.9.0-cp35-cp35m-linux_x86_64.whl && \
+    pip install --ignore-installed --upgrade $TF_BINARY_URL
 
 # XGBoost
 
