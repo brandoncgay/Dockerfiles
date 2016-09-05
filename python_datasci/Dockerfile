@@ -3,13 +3,23 @@ FROM continuumio/anaconda3:latest
 # Set the time zone to the local time zone
 RUN echo "America/Phoenix" > /etc/timezone && dpkg-reconfigure --frontend noninteractive tzdata
 
+# Linux
+RUN apt-get update && apt-get install -y build-essential
+
 RUN conda update --all
 
-# Install packages for scientific computing
+## Data packages
+
+# SFrame
+# Does not support python 3.5 yet
+# RUN pip install -U sframe
+
+## Install packages for scientific computing
 
 # Theano
+RUN pip install Theano
 
-# Install plotting and visualization packages
+## Install plotting and visualization packages
 RUN conda install seaborn
 
 # d3py
@@ -21,7 +31,7 @@ RUN conda install seaborn
 # prettyplotlib
 
 
-# Install machine learning packages
+## Install machine learning packages
 
 # PyBrain
 
@@ -30,13 +40,14 @@ RUN conda install seaborn
 # PyMC
 
 # TensorFlow
-# Ubuntu/Linux 64-bit, CPU only, Python 3.5
-RUN export TF_BINARY_URL=https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-0.9.0-cp35-cp35m-linux_x86_64.whl && \
-    pip install --ignore-installed --upgrade $TF_BINARY_URL
+RUN conda install -c jjhelmus tensorflow=0.9.0
 
 # XGBoost
+RUN cd /usr/local/src && mkdir xgboost && cd xgboost && \
+    git clone --recursive https://github.com/dmlc/xgboost.git && cd xgboost && \
+    make -j4 && cd python-package && python setup.py install
 
-# Install Hadoop/Big Data packages
+## Install Hadoop/Big Data packages
 
 # pysaprk
 
