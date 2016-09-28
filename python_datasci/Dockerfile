@@ -19,6 +19,13 @@ RUN conda update --all
 # Theano
 RUN pip install Theano
 
+# Octave and kernel for jupyter
+	
+RUN apt-get install -y octave
+
+RUN pip install octave_kernel
+RUN python -m octave_kernel.install
+
 ## Install plotting and visualization packages
 RUN conda install seaborn
 
