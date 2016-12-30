@@ -8,12 +8,6 @@ RUN apt-get update && apt-get install -y build-essential
 
 RUN conda update --all
 
-## Data packages
-
-# SFrame
-# Does not support python 3.5 yet
-# RUN pip install -U sframe
-
 ## Install packages for scientific computing
 
 # Theano
@@ -29,34 +23,16 @@ RUN python -m octave_kernel.install
 ## Install plotting and visualization packages
 RUN conda install seaborn
 
-# d3py
-
-# ggplot
-
-# plotly
-
-# prettyplotlib
-
-
 ## Install machine learning packages
 
-# PyBrain
-
-# PyLearn2
-
-# PyMC
-
 # TensorFlow
-RUN conda install -c jjhelmus tensorflow=0.9.0
+RUN conda install -c jjhelmus tensorflow=0.12.0rc0
 
 # XGBoost
 RUN cd /usr/local/src && mkdir xgboost && cd xgboost && \
     git clone --recursive https://github.com/dmlc/xgboost.git && cd xgboost && \
     make -j4 && cd python-package && python setup.py install
 
-## Install Hadoop/Big Data packages
-
-# pysaprk
 
 CMD [ "/bin/bash" ]
 
