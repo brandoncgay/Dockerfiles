@@ -33,7 +33,8 @@ RUN conda install scrapy
 ## Install machine learning packages
 
 # TensorFlow
-RUN conda install -c jjhelmus tensorflow=0.12.0rc0
+RUN conda install -c conda-forge tensorflow
+RUN pip install tflearn
 
 # XGBoost
 RUN cd /usr/local/src && mkdir xgboost && cd xgboost && \
