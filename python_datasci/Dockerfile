@@ -48,6 +48,6 @@ CMD [ "/bin/bash" ]
 # docker build -t python_datasci .
 
 # Docker run commmand to start a container running jupyter server linked to the projects dir
-# docker run -v ~/projects:/tmp/working -w=/tmp/working -p 8888:8888 -t -i --rm brandoncgay/python_datasci \
+# docker run -v ~/projects:/tmp/working -w=/tmp/working -p 8888:8888 -t -i --rm python_datasci \
 # sh -c "jupyter notebook --no-browser --ip=* --notebook-dir=/tmp/working"
 
