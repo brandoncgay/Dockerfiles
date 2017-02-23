@@ -22,9 +22,6 @@ RUN python -m octave_kernel.install
 
 ## Install plotting and visualization packages
 
-# Seaborn
-RUN conda install seaborn
-
 ## Install data scraping packages
 
 # Scrapy
