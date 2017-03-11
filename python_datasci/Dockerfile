@@ -32,6 +32,7 @@ RUN conda install scrapy
 # TensorFlow
 RUN conda install -c conda-forge tensorflow
 RUN pip install tflearn
+RUN pip install keras
 
 # XGBoost
 RUN cd /usr/local/src && mkdir xgboost && cd xgboost && \
