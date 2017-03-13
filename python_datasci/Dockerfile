@@ -8,6 +8,15 @@ RUN apt-get update && apt-get install -y build-essential
 
 RUN conda update --all
 
+
+## Install Python utilities
+RUN conda install -c conda-forge tqdm
+
+## Install data scraping packages
+
+# Scrapy
+RUN conda install scrapy 
+
 ## Install packages for scientific computing
 
 # Theano
@@ -22,10 +31,7 @@ RUN python -m octave_kernel.install
 
 ## Install plotting and visualization packages
 
-## Install data scraping packages
 
-# Scrapy
-RUN conda install scrapy
 
 ## Install machine learning packages
 
