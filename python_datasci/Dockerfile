@@ -6,6 +6,8 @@ RUN echo "America/Phoenix" > /etc/timezone && dpkg-reconfigure --frontend nonint
 # Linux
 RUN apt-get update && apt-get install -y build-essential
 
+RUN conda update -n base conda
+
 RUN conda update --all
 
 
