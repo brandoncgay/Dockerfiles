@@ -22,14 +22,14 @@ RUN conda install scrapy
 ## Install packages for scientific computing
 
 # Theano
-RUN pip install Theano
+#RUN pip install Theano
 
 # Octave and kernel for jupyter
 	
-RUN apt-get install -y octave
+#RUN apt-get install -y octave
 
-RUN pip install octave_kernel
-RUN python -m octave_kernel.install
+#RUN pip install octave_kernel
+#RUN python -m octave_kernel.install
 
 ## Install plotting and visualization packages
 
